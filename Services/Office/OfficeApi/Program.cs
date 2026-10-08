@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
-using OfficeApi.Data;
+using OfficeApi.Application;
+using OfficeApi.Infrastructure;
+using OfficeApi.Infrastructure.Data;
 
 // создаем билдер
 var builder = WebApplication.CreateBuilder(args);
 
 // регистрируем зависимости 
-// подключаем контейнер DI с контроллерами, которые будем юзать
 builder.Services.AddControllers();
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 // регистрируем OfficeDbContext - создание и настройка для PostgreSQL
 builder.Services.AddDbContext<OfficeDbContext>(options =>
