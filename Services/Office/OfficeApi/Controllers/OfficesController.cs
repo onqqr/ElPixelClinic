@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OfficeApi.Application.DTOs;
 using OfficeApi.Application.Services;
-using OfficeApi.Domain.Entities;
+using FluentValidation;
 
 namespace OfficeApi.Controllers;
 
@@ -11,9 +11,11 @@ namespace OfficeApi.Controllers;
 public class OfficesController : ControllerBase
 {
     private readonly OfficeService _officeService;
-    public OfficesController(OfficeService officeService)
+    private readonly IValidator<CreateOfficeRequest> _validator;
+    public OfficesController(OfficeService officeService, IValidator<CreateOfficeRequest> validator)
     {
         _officeService = officeService;
+        _validator = validator;
     }
 
     [HttpGet] // атрибут - который добавяет HTTP GET
@@ -21,5 +23,17 @@ public class OfficesController : ControllerBase
     {
         var offices = await _officeService.GetAllAsync();
         return Ok(offices);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<OfficeResponse>> Create(CreateOfficeRequest request)
+    {
+        var validationResult = await _validator.ValidateAsync(request);
+        if (!validationResult.IsValid)
+        {
+            return BadRequest(validationResult.Errors);
+        }
+        var office = await _officeService.CreateAsync(request);
+        return Ok(office);
     }
 }
