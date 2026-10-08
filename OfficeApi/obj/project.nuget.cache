@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "MPMVrec+QJ8=",
+  "success": true,
+  "projectFilePath": "/Users/onqqr/developer/net_core/ElPixelClinic/OfficeApi/OfficeApi.csproj",
+  "expectedPackageFiles": [
+    "/Users/onqqr/.nuget/packages/microsoft.aspnetcore.openapi/10.0.11/microsoft.aspnetcore.openapi.10.0.11.nupkg.sha512",
+    "/Users/onqqr/.nuget/packages/microsoft.openapi/2.7.5/microsoft.openapi.2.7.5.nupkg.sha512"
+  ],
+  "logs": []
+}
