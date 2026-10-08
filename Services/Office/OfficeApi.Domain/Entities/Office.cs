@@ -1,4 +1,6 @@
-namespace OfficeApi.Models;
+namespace OfficeApi.Domain.Entities;
+
+using OfficeApi.Domain.Enums;
 
 public class Office
 {
