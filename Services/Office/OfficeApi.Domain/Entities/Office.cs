@@ -5,7 +5,6 @@ using OfficeApi.Domain.Enums;
 public class Office
 {
     public Guid Id { get; set; }
-    // фото не обязательно
     public string? PhotoUrl { get; set; }
     public string City { get; set; } = string.Empty;
     public string Street { get; set; } = string.Empty;

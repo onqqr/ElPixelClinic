@@ -15,6 +15,4 @@ public class CreateOfficeRequest
     public string? OfficeNumber { get; set; }
 
     public string RegistryPhoneNumber { get; set; } = string.Empty;
-
-    public OfficeStatus Status { get; set; } = OfficeStatus.Active;
 }

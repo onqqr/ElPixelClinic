@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using OfficeApi.Application.DTOs;
 using OfficeApi.Application.Services;
 using FluentValidation;
+using OfficeApi.Domain.Enums;
 
 namespace OfficeApi.Controllers;
 
-// контроллер который отвечает за ресурс Office. он занимается HTTP
-[ApiController] // атрибут - добавляет дополнительное поведение/метаданные к классу 
+[ApiController]
 [Route("api/[controller]")]
 public class OfficesController : ControllerBase
 {
@@ -18,7 +18,7 @@ public class OfficesController : ControllerBase
         _validator = validator;
     }
 
-    [HttpGet] // атрибут - который добавяет HTTP GET
+    [HttpGet]
     public async Task<ActionResult<List<OfficeResponse>>> GetAll()
     {
         var offices = await _officeService.GetAllAsync();
@@ -34,6 +34,38 @@ public class OfficesController : ControllerBase
             return BadRequest(validationResult.Errors);
         }
         var office = await _officeService.CreateAsync(request);
+        return CreatedAtAction(
+            nameof(GetById),
+            new { id = office.Id },
+            office);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<OfficeResponse>> GetById(Guid id)
+    {
+        var office = await _officeService.GetByIdAsync(id);
+        if (office is null)
+        {
+            return NotFound();
+        }
+        return Ok(office);
+    }
+
+    [HttpPatch("{id:guid}/status")]
+    public async Task<ActionResult<OfficeResponse>> ChangeStatus(
+        Guid id,
+        ChangeOfficeStatusRequest request)
+    {
+        if (!Enum.IsDefined(typeof(OfficeStatus), request.Status))
+        {
+            return BadRequest("invalid office status");
+        }
+
+        var office = await _officeService.ChangeStatusAsync(id, request);
+        if (office is null)
+        {
+            return NotFound();
+        }
         return Ok(office);
     }
 }

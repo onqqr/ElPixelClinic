@@ -6,21 +6,15 @@ namespace OfficeApi.Application.Services;
 
 public class OfficeService
 {
-    // юзаем возможность работать с офисами в хранилище
     private readonly IOfficeRepository _officeRepository;
     
     public OfficeService(IOfficeRepository officeRepository)
     {
         _officeRepository = officeRepository;
     }
-
-    // получаем список офисов и подготоваливаем его к ответу апи
     public async Task<List<OfficeResponse>> GetAllAsync()
     {
-        // идем в БД и возвращаем список офисов
         var office = await _officeRepository.GetAllAsync();
-        
-        // для каждого офиса подготавливаем поля, которые клиент должен получить
         return office.Select(office => new OfficeResponse
         {
             Id = office.Id,
@@ -29,6 +23,24 @@ public class OfficeService
             Status = office.Status,
             RegistryPhoneNumber = office.RegistryPhoneNumber
         }).ToList();
+    }
+
+    public async Task<OfficeResponse?> GetByIdAsync(Guid id)
+    {
+        var office = await _officeRepository.GetByIdAsync(id);
+        if (office is null)
+        {
+            return null;
+        }
+
+        return new OfficeResponse
+        {
+            Id = office.Id,
+            PhotoUrl = office.PhotoUrl,
+            Address = office.Address,
+            Status = office.Status,
+            RegistryPhoneNumber = office.RegistryPhoneNumber
+        };
     }
 
     public async Task<OfficeResponse> CreateAsync(CreateOfficeRequest request)
@@ -42,10 +54,31 @@ public class OfficeService
             HouseNumber = request.HouseNumber,
             OfficeNumber = request.OfficeNumber,
             RegistryPhoneNumber = request.RegistryPhoneNumber,
-            Status = request.Status,
         };
         
         await _officeRepository.AddAsync(office);
+        return new OfficeResponse
+        {
+            Id = office.Id,
+            PhotoUrl = office.PhotoUrl,
+            Address = office.Address,
+            Status = office.Status,
+            RegistryPhoneNumber = office.RegistryPhoneNumber
+        };
+    }
+
+    public async Task<OfficeResponse?> ChangeStatusAsync(
+        Guid id,
+        ChangeOfficeStatusRequest request)
+    {
+        var office = await _officeRepository.GetByIdAsync(id);
+        if (office is null)
+        {
+            return null;
+        }
+
+        office.Status = request.Status;
+        await _officeRepository.UpdateAsync(office);
 
         return new OfficeResponse
         {

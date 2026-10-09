@@ -6,24 +6,23 @@ public class CreateOfficeRequestValidator : AbstractValidator<CreateOfficeReques
 {
     public CreateOfficeRequestValidator()
     {
-        // описываем правила, значение не должно быть пустым, если правило нарушено, вернуть сообщение
         RuleFor(x => x.City)
             .NotEmpty()
-            .WithMessage("pls, enter the office's city");
+            .WithMessage("Please, enter the office's city");
         
         RuleFor(x => x.Street)
             .NotEmpty()
-            .WithMessage("pls, enter the office's street");
+            .WithMessage("Please, enter the office's street");
         
         RuleFor(x => x.HouseNumber)
             .NotEmpty()
-            .WithMessage("pls, enter the office's house number");
+            .WithMessage("Please, enter the office's house number");
         
         RuleFor(x => x.RegistryPhoneNumber)
             .NotEmpty()
-            .WithMessage("pls, enter the phone number")
+            .WithMessage("Please, enter the phone number")
             .Matches(@"^\+\d+$")
-            .WithMessage("you've entered an invalid phone number");
+            .WithMessage("You've entered an invalid phone number");
         
     }
 }

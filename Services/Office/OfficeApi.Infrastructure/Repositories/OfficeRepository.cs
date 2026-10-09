@@ -21,15 +21,19 @@ public class OfficeRepository : IOfficeRepository
 
     public async Task<Office?> GetByIdAsync(Guid id)
     {
-        // найти первый офис, в котором id совпадает с переданным id
-        // если не нашел - null
         return await _context.Offices
             .FirstOrDefaultAsync(office => office.Id == id);
     }
 
     public async Task AddAsync(Office office)
     {
-        await _context.Offices.AddAsync(office); // подготавливаем к добавлению
-        await _context.SaveChangesAsync(); // сохраняем в БД
+        await _context.Offices.AddAsync(office);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(Office office)
+    {
+        _context.Offices.Update(office);
+        await _context.SaveChangesAsync();
     }
 }
