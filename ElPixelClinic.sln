@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilesApi", "Services\Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeApi.Infrastructure", "Services\Office\OfficeApi.Infrastructure\OfficeApi.Infrastructure.csproj", "{2FB27353-97F3-493E-BE11-4BB19C955472}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeApi.Tests", "Services\Office\OfficeApi.Tests\OfficeApi.Tests.csproj", "{B6909105-C278-48F2-AFB4-67A72283E484}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,18 @@ Global
 		{2FB27353-97F3-493E-BE11-4BB19C955472}.Release|x64.Build.0 = Release|Any CPU
 		{2FB27353-97F3-493E-BE11-4BB19C955472}.Release|x86.ActiveCfg = Release|Any CPU
 		{2FB27353-97F3-493E-BE11-4BB19C955472}.Release|x86.Build.0 = Release|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Debug|x64.Build.0 = Debug|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Debug|x86.Build.0 = Debug|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Release|x64.ActiveCfg = Release|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Release|x64.Build.0 = Release|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Release|x86.ActiveCfg = Release|Any CPU
+		{B6909105-C278-48F2-AFB4-67A72283E484}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,5 +113,6 @@ Global
 		{F4976100-4615-436C-B764-7FFE029A2674} = {AEB694D6-E504-C3C1-90C1-7611A3C78F54}
 		{C07408A8-23E3-4CA2-AC8C-8781A201DD39} = {B2C1E8A4-3F5D-4A6B-9C7E-1D2F3A4B5C6D}
 		{2FB27353-97F3-493E-BE11-4BB19C955472} = {AEB694D6-E504-C3C1-90C1-7611A3C78F54}
+		{B6909105-C278-48F2-AFB4-67A72283E484} = {AEB694D6-E504-C3C1-90C1-7611A3C78F54}
 	EndGlobalSection
 EndGlobal
